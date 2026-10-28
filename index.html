@@ -1,0 +1,3461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nokhpa TEAM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#9c7618;
+  --gold-soft:rgba(212,175,55,.18);
+
+  --bg:#070707;
+  --bg2:#101010;
+  --card:#111111;
+
+  --text:#f7f2df;
+  --text2:#c9c0a8;
+  --text3:#91876e;
+
+  --border:rgba(212,175,55,.22);
+
+  --success:#20c77a;
+  --danger:#ef4444;
+
+  --radius:18px;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:#d4af37 #050505;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.08),transparent 35%),
+    #070707;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(212,175,55,.035),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(212,175,55,.035),transparent 25%);
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+#prog-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  z-index:9999;
+  background:linear-gradient(
+    90deg,
+    #8f6b16,
+    #d4af37,
+    #fff1a8,
+    #d4af37,
+    #8f6b16
+  );
+  box-shadow:0 0 14px rgba(212,175,55,.8);
+  transition:width .3s ease;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(212,175,55,.35);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.5),
+    0 1px 0 rgba(212,175,55,.08);
+}
+
+.nav-back{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#e9d88d;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:8px 13px;
+
+  border-radius:9px;
+  border:1px solid rgba(212,175,55,.35);
+
+  background:#0d0d0d;
+
+  transition:.3s;
+}
+
+.nav-back:hover{
+  color:#fff;
+  border-color:#d4af37;
+  transform:translateX(3px);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#f5d76e;
+  font-size:15px;
+  font-weight:900;
+}
+
+.nav-logo-icon{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#080808;
+  font-size:11px;
+  font-weight:900;
+
+  border:1px solid rgba(255,225,120,.8);
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,.28),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.theme-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0d0d0d;
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.theme-btn:hover{
+  border-color:#d4af37;
+  transform:rotate(20deg);
+  box-shadow:0 0 18px rgba(212,175,55,.2);
+}
+
+/* HERO */
+
+.hero-band{
+  position:relative;
+  overflow:hidden;
+
+  margin-top:64px;
+
+  padding:44px 24px 38px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      ellipse 650px 260px at 50% 115%,
+      rgba(212,175,55,.22),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #030303 0%,
+      #0b0b0b 42%,
+      #151208 65%,
+      #000 100%
+    );
+
+  border-bottom:1px solid rgba(212,175,55,.55);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(212,175,55,.2);
+}
+
+.hero-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse 700px 220px at 50% 100%,
+      rgba(245,215,110,.15),
+      transparent 70%
+    );
+}
+
+.hero-band::after{
+  content:"";
+  position:absolute;
+
+  left:-10%;
+  right:-10%;
+  bottom:-85px;
+
+  height:150px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(212,175,55,.14),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+.hero-band-icon{
+  position:relative;
+  z-index:1;
+
+  width:70px;
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 15px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#090909;
+
+  border:1px solid rgba(255,230,130,.85);
+
+  font-size:30px;
+
+  box-shadow:
+    0 0 25px rgba(212,175,55,.25),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.hero-band h1{
+  position:relative;
+  z-index:1;
+
+  color:#fff7d0;
+
+  font-size:clamp(22px,4vw,31px);
+  font-weight:900;
+
+  margin-bottom:7px;
+
+  text-shadow:
+    0 2px 15px rgba(212,175,55,.25);
+}
+
+.hero-band p{
+  position:relative;
+  z-index:1;
+
+  color:#cfc39b;
+
+  font-size:13px;
+}
+
+.hero-band-meta{
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 16px;
+
+  border-radius:50px;
+
+  background:rgba(212,175,55,.08);
+
+  border:1px solid rgba(212,175,55,.38);
+
+  color:#f5d76e;
+
+  font-size:12px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 15px rgba(0,0,0,.25);
+}
+
+/* MAIN */
+
+.shell{
+  width:100%;
+  max-width:760px;
+
+  margin:0 auto;
+
+  padding:28px 20px 80px;
+}
+
+/* STATS */
+
+.stats-row{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.stat-box{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(212,175,55,.025)
+    );
+
+  border:1px solid rgba(212,175,55,.22);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+
+.stat-box:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(212,175,55,.5);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45),
+    0 0 20px rgba(212,175,55,.08);
+}
+
+.stat-box .val{
+  font-size:21px;
+  font-weight:900;
+}
+
+.stat-box .lbl{
+  margin-top:2px;
+
+  color:var(--text3);
+
+  font-size:11px;
+}
+
+.stat-correct{
+  color:var(--success);
+}
+
+.stat-wrong{
+  color:var(--danger);
+}
+
+.stat-remain{
+  color:#d4af37;
+}
+
+/* PROGRESS */
+
+.prog-strip{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  margin-bottom:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101010,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.prog-label{
+  color:#d8cfb5;
+
+  font-size:13px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.prog-track{
+  flex:1;
+
+  height:8px;
+
+  background:#050505;
+
+  border:1px solid rgba(212,175,55,.12);
+
+  border-radius:8px;
+
+  overflow:hidden;
+}
+
+.prog-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #d4af37
+    );
+
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+
+  border-radius:8px;
+
+  transition:width .4s;
+}
+
+.timer-badge{
+  min-width:70px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  padding:0 12px;
+
+  flex-shrink:0;
+
+  border-radius:18px;
+
+  background:#0a0a0a;
+
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.45);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.timer-badge.warn{
+  color:#f5d76e;
+  border-color:rgba(212,175,55,.7);
+}
+
+.timer-badge.danger{
+  color:#ef4444;
+  border-color:rgba(239,68,68,.5);
+
+  animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+/* QUESTION */
+
+.q-card{
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.28);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5),
+    0 0 25px rgba(212,175,55,.035),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.q-header{
+  display:flex;
+  align-items:center;
+
+  padding:7px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #b58b22
+    );
+
+  box-shadow:
+    0 4px 20px rgba(212,175,55,.15);
+}
+
+.q-num{
+  padding:4px 11px;
+
+  border-radius:8px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.18);
+
+  color:#fff9d9;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.q-text{
+  padding:22px 18px 15px;
+
+  color:#f5f1e5;
+
+  font-size:15px;
+  font-weight:700;
+
+  line-height:1.7;
+
+  border-bottom:1px solid rgba(212,175,55,.15);
+
+  text-align:left;
+  direction:ltr;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:18px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px 16px;
+
+  min-height:55px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #0d0d0d
+    );
+
+  border:1.5px solid rgba(212,175,55,.18);
+
+  color:#eee8d8;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  direction:ltr;
+  text-align:left;
+
+  user-select:none;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.opt:hover:not(.disabled){
+  border-color:#d4af37;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(212,175,55,.12),
+      rgba(212,175,55,.035)
+    );
+
+  transform:translateX(5px);
+
+  box-shadow:
+    0 5px 20px rgba(212,175,55,.1),
+    inset 0 0 15px rgba(212,175,55,.03);
+}
+
+.opt-letter{
+  width:29px;
+  height:29px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.opt.correct{
+  border-color:#20c77a;
+  background:rgba(32,199,122,.07);
+}
+
+.opt.correct .opt-letter{
+  background:#20c77a;
+  border-color:#20c77a;
+  color:#fff;
+}
+
+.opt.wrong{
+  border-color:#ef4444;
+  background:rgba(239,68,68,.07);
+}
+
+.opt.wrong .opt-letter{
+  background:#ef4444;
+  border-color:#ef4444;
+  color:#fff;
+}
+
+.opt.disabled{
+  pointer-events:none;
+}
+
+/* FEEDBACK */
+
+.feedback-bar{
+  margin:0 18px 14px;
+
+  padding:12px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:800;
+
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.feedback-bar.ok{
+  background:rgba(32,199,122,.08);
+  color:#20c77a;
+  border:1px solid rgba(32,199,122,.25);
+}
+
+.feedback-bar.no{
+  background:rgba(239,68,68,.08);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.22);
+}
+
+.feedback-icon{
+  font-size:20px;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* EXPLANATION */
+
+.explanation{
+  margin:0 18px 14px;
+
+  padding:12px 14px;
+
+  background:rgba(212,175,55,.045);
+
+  border-radius:10px;
+
+  border-right:3px solid #d4af37;
+
+  color:#d8cfb5;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.nav-btns{
+  display:flex;
+  gap:10px;
+
+  padding:4px 18px 18px;
+}
+
+.btn{
+  flex:1;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  transition:.3s;
+}
+
+.btn-next,
+.btn-retry{
+  background:
+    linear-gradient(
+      135deg,
+      #9c7618,
+      #d4af37,
+      #f5d76e
+    );
+
+  color:#080808;
+
+  box-shadow:
+    0 6px 20px rgba(212,175,55,.2);
+}
+
+.btn-next:hover,
+.btn-retry:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(212,175,55,.3);
+}
+
+.btn-skip,
+.btn-home{
+  background:#111;
+
+  color:#cfc39b;
+
+  border:1px solid rgba(212,175,55,.22);
+}
+
+.btn-skip{
+  flex:0 0 auto;
+  padding:13px 18px;
+}
+
+.btn-skip:hover,
+.btn-home:hover{
+  border-color:#d4af37;
+  color:#f5d76e;
+}
+
+/* RESULTS */
+
+.result-hero{
+  text-align:center;
+
+  padding:30px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #090909
+    );
+
+  border:1px solid rgba(212,175,55,.3);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(212,175,55,.04);
+}
+
+.score-ring{
+  width:120px;
+  height:120px;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  margin:0 auto 18px;
+}
+
+.score-ring svg{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+}
+
+.score-ring circle{
+  fill:none;
+
+  stroke-width:5;
+
+  stroke-linecap:round;
+}
+
+.ring-bg{
+  stroke:#242019;
+}
+
+.ring-fill{
+  stroke:#d4af37;
+
+  transition:stroke-dashoffset 1s ease;
+}
+
+.score-num{
+  position:relative;
+
+  font-size:28px;
+  font-weight:900;
+}
+
+.score-pct{
+  position:relative;
+
+  color:var(--text3);
+
+  font-size:12px;
+}
+
+.result-grade{
+  margin-bottom:7px;
+
+  color:#f5d76e;
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.result-sub{
+  color:var(--text2);
+
+  font-size:14px;
+}
+
+.result-stats{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.rs{
+  padding:12px 8px;
+
+  background:#101010;
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:10px;
+}
+
+.rs .n{
+  font-size:20px;
+  font-weight:900;
+}
+
+.rs .l{
+  color:var(--text3);
+  font-size:11px;
+}
+
+/* REPORT */
+
+.report-title{
+  margin:28px 0 12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.report-item{
+  margin-bottom:10px;
+
+  padding:16px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-right:4px solid var(--border);
+
+  border-radius:14px;
+}
+
+.report-item.ok{
+  border-right-color:var(--success);
+}
+
+.report-item.no{
+  border-right-color:var(--danger);
+}
+
+.ri-q{
+  margin-bottom:8px;
+
+  font-size:13px;
+  font-weight:700;
+
+  line-height:1.6;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-row{
+  display:flex;
+  align-items:flex-start;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-badge{
+  padding:2px 8px;
+
+  flex-shrink:0;
+
+  border-radius:6px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.ri-yours{
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+}
+
+.ri-right{
+  background:rgba(32,199,122,.1);
+  color:#20c77a;
+}
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* INPUTS */
+
+.student-box{
+  text-align:right;
+
+  margin-bottom:14px;
+}
+
+.student-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--text2);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.student-input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#0c0c0c;
+
+  color:var(--text);
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.3s;
+}
+
+.student-input:focus{
+  border-color:#d4af37;
+
+  box-shadow:0 0 15px rgba(212,175,55,.1);
+}
+
+.student-error{
+  display:none;
+
+  margin-bottom:12px;
+
+  padding:10px;
+
+  color:#ef4444;
+
+  background:rgba(239,68,68,.08);
+
+  border:1px solid rgba(239,68,68,.2);
+
+  border-radius:10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding:22px 24px;
+
+  background:#050505;
+
+  border-top:1px solid rgba(212,175,55,.28);
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,.35);
+}
+
+.footer-brand{
+  color:#d8cfb5;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.footer-brand span{
+  color:#d4af37;
+}
+
+.footer-tg{
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 14px;
+  }
+
+  .nav-brand span{
+    display:none;
+  }
+
+  .hero-band{
+    padding:36px 14px 32px;
+  }
+
+  .hero-band h1{
+    font-size:24px;
+  }
+
+  .meta-pill{
+    padding:6px 12px;
+  }
+
+  .shell{
+    padding:22px 12px 60px;
+  }
+
+  .stats-row{
+    gap:7px;
+  }
+
+  .stat-box{
+    padding:11px 6px;
+  }
+
+  .prog-strip{
+    gap:8px;
+  }
+
+  .prog-label{
+    font-size:11px;
+  }
+
+  .timer-badge{
+    min-width:65px;
+    padding:0 8px;
+    font-size:12px;
+  }
+
+  .q-card{
+    border-radius:16px;
+  }
+
+  .q-text{
+    font-size:14px;
+  }
+
+  .opt{
+    font-size:13px;
+    padding:13px;
+  }
+
+  footer{
+    padding:20px 14px;
+  }
+}
+/* ===== Luxury WhatsApp Contact ===== */
+
+.contact-section {
+  margin: 35px auto 10px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.contact-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.contact-title h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-line {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.contact-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(212,175,55,.10),
+    rgba(255,255,255,.025)
+  );
+  color: var(--text);
+  text-decoration: none;
+  text-align: right;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(212,175,55,.15);
+}
+
+.contact-btn i {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 23px;
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+  background: rgba(212,175,55,.08);
+}
+
+.contact-btn:hover i {
+  background: var(--gold);
+  color: #080808;
+}
+
+.contact-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-btn strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="prog-bar"></div>
+
+<nav>
+
+  <a href="../index.html" class="nav-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    رجوع
+  </a>
+
+  <div class="nav-brand">
+    <div class="nav-logo-icon">NT</div>
+    <span>Nokhpa TEAM</span>
+  </div>
+
+  <div class="nav-right">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Change theme"
+    >
+      ☀️
+    </button>
+  </div>
+
+</nav>
+
+<section class="hero-band">
+
+  <div class="hero-band-icon">
+    🧪
+  </div>
+
+  <h1>MicroBiology</h1>
+
+  <p>Comprehensive Biochemistry Carbohydrates</p>
+
+  <div class="hero-band-meta">
+
+    <div class="meta-pill">
+      📚
+      <span id="totalBadge">0 سؤال</span>
+    </div>
+
+    <div class="meta-pill">
+      ⏱️ 60 Min
+    </div>
+
+    <div class="meta-pill">
+      🔀 Shuffled
+    </div>
+
+  </div>
+
+</section>
+
+<main class="shell">
+
+  <div class="stats-row">
+
+    <div class="stat-box">
+      <div class="val stat-correct" id="sCorrect">0</div>
+      <div class="lbl">صحيح</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-wrong" id="sWrong">0</div>
+      <div class="lbl">خطأ</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-remain" id="sRemain">100%</div>
+      <div class="lbl">متبقي</div>
+    </div>
+
+  </div>
+
+  <div class="prog-strip">
+
+    <div class="prog-label" id="progLabel">
+      سؤال 1
+    </div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+
+    <div class="timer-badge" id="timerBadge">
+      ⏱️
+      <span id="timerTxt">60:00</span>
+    </div>
+
+  </div>
+
+  <div id="app"></div>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+    Nokhpa <span>TEAM</span>
+  </div>
+
+  <div class="footer-tg">
+    ✦ Nursing Process
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const QUESTIONS = [
+  {
+    t: "A substance enters the body through a wound and stimulates a specific immune response. Which statement best distinguishes the two terms involved?",
+    o: [
+      "Immunity is the invading substance, whereas antigen is the protection against it.",
+      "The antigen stimulates a specific immune response, whereas immunity refers to resistance or protection against invasion.",
+      "An antibody is always the antigen that initiates the response.",
+      "Immunity occurs only when the body produces memory cells."
+    ],
+    a: 1
+  },
+  {
+    t: "Which combination is correctly matched?",
+    o: [
+      "First line of defense — antibodies and memory cells",
+      "Second line of defense — physical barriers only",
+      "Immune system — protection against invading substances",
+      "Immunity — destruction of self-antigens under normal conditions"
+    ],
+    a: 2
+  },
+  {
+    t: "A microorganism is present outside body cells. According to the classification in the notes, which association is most appropriate?",
+    o: [
+      "Intracellular microbe — extracellular location",
+      "Extracellular microbe — bacterial example",
+      "Intracellular microbe — antibody-producing cell",
+      "Extracellular microbe — memory cell"
+    ],
+    a: 1
+  },
+  {
+    t: "Which statement about the immune system’s recognition of self and foreign material is the most accurate?",
+    o: [
+      "All self-antigens must be destroyed to establish immunity.",
+      "Foreign substances are always harmless to the body.",
+      "Recognition of self-antigens normally involves tolerance rather than an autoimmune attack.",
+      "Recognition of foreign material occurs only through T cells."
+    ],
+    a: 2
+  },
+  {
+    t: "Which of the following is a secretory product of the immune system rather than a cell?",
+    o: ["Neutrophil", "Natural killer cell", "Complement", "Dendritic cell"],
+    a: 2
+  },
+  {
+    t: "Which group consists entirely of secretory products mentioned in the notes?",
+    o: [
+      "Antibodies, complement, cytokines, lysozymes",
+      "Antibodies, B cells, complement, neutrophils",
+      "Cytokines, T cells, lysozymes, NK cells",
+      "Complement, macrophages, antibodies, platelets"
+    ],
+    a: 0
+  },
+  {
+    t: "Which pairing is INCORRECT?",
+    o: [
+      "Leukocytes — immune cells",
+      "Antibodies — secretory products",
+      "Complement — secretory product",
+      "Platelets — a class of immunoglobulin"
+    ],
+    a: 3
+  },
+  {
+    t: "A question asks for the distinction between innate and acquired immunity. Which answer best follows the classification in your notes?",
+    o: [
+      "Innate includes granulocytes, phagocytes and NK cells; acquired includes B and T cells.",
+      "Innate includes only antibodies; acquired includes only complement.",
+      "Innate includes B cells exclusively; acquired includes granulocytes exclusively.",
+      "Innate and acquired immunity differ only in the location of their organs."
+    ],
+    a: 0
+  },
+  {
+    t: "Which cell is most directly associated with antibody production after antigen exposure?",
+    o: ["T helper cell", "B cell", "Natural killer cell", "Neutrophil"],
+    a: 1
+  },
+  {
+    t: "Which sequence correctly represents the hierarchy described in the notes?",
+    o: [
+      "Stem cells → WBCs → lymphocytes → B and T cells",
+      "B cells → stem cells → platelets → T cells",
+      "Antibodies → stem cells → WBCs → lymphocytes",
+      "Thymus → RBCs → platelets → B cells"
+    ],
+    a: 0
+  },
+  {
+    t: "A lymphocyte originates in the bone marrow but matures in another organ. Which answer is correct?",
+    o: [
+      "B cell — thymus",
+      "T cell — thymus",
+      "NK cell — spleen",
+      "T cell — lymph node"
+    ],
+    a: 1
+  },
+  {
+    t: "Which pair consists exclusively of primary lymphoid organs?",
+    o: [
+      "Spleen and lymph nodes",
+      "Bone marrow and spleen",
+      "Thymus and lymph nodes",
+      "Bone marrow and thymus"
+    ],
+    a: 3
+  },
+  {
+    t: "The main distinction between primary and secondary lymphoid organs in the notes is that:",
+    o: [
+      "Primary organs produce antibodies, while secondary organs produce complement exclusively.",
+      "Primary organs are sites of lymphocyte maturation, while secondary organs are sites where lymphocytes respond to antigens.",
+      "Primary organs contain only innate cells, while secondary organs contain only acquired cells.",
+      "Primary organs are involved in transplantation, while secondary organs are involved in hypersensitivity."
+    ],
+    a: 1
+  },
+  {
+    t: "Which organ is INCORRECTLY classified?",
+    o: [
+      "Bone marrow — primary",
+      "Thymus — primary",
+      "Spleen — secondary",
+      "Lymph node — primary"
+    ],
+    a: 3
+  },
+  {
+    t: "Which of the following contains only granulocytes mentioned in the notes?",
+    o: [
+      "Neutrophils, eosinophils, basophils",
+      "Neutrophils, lymphocytes, monocytes",
+      "B cells, T cells, NK cells",
+      "Dendritic cells, B cells, basophils"
+    ],
+    a: 0
+  },
+  {
+    t: "Which cell is listed separately from the granulocytes and lymphocytes in the supplied classification?",
+    o: ["Dendritic cell", "Basophil", "Eosinophil", "Neutrophil"],
+    a: 0
+  },
+  {
+    t: "Which statement is INCORRECT according to the supplied classification?",
+    o: [
+      "B cells belong to acquired immunity.",
+      "T cells belong to acquired immunity.",
+      "NK cells belong to innate immunity.",
+      "B cells are classified as granulocytes."
+    ],
+    a: 3
+  },
+  {
+    t: "A patient has an immune response mediated by antibodies. Which cell lineage is most directly involved in producing those antibodies?",
+    o: [
+      "B lymphocytes",
+      "T cytotoxic lymphocytes",
+      "Natural killer cells",
+      "Neutrophils"
+    ],
+    a: 0
+  },
+  {
+    t: "Which statement correctly distinguishes B cells from T cells in the context of the notes?",
+    o: [
+      "B cells are associated with antibody formation, whereas T cells are associated with cell-mediated immunity.",
+      "B cells mature in the thymus, whereas T cells mature in the bone marrow.",
+      "B cells are innate, whereas T cells are exclusively secretory products.",
+      "B cells are primary organs, whereas T cells are secondary organs."
+    ],
+    a: 0
+  },
+  {
+    t: "Which combination contains two secondary lymphoid organs and one primary lymphoid organ?",
+    o: [
+      "Thymus, bone marrow, spleen",
+      "Spleen, lymph node, thymus",
+      "Lymph node, thymus, bone marrow",
+      "Bone marrow, thymus, lymph node"
+    ],
+    a: 1
+  },
+  {
+    t: "An individual receives ready-made human immunoglobulin. Which type of immunity is acquired?",
+    o: [
+      "Natural active",
+      "Artificial active",
+      "Natural passive",
+      "Artificial passive"
+    ],
+    a: 3
+  },
+  {
+    t: "A newborn receives maternal antibodies through the placenta. Which combination is correct?",
+    o: [
+      "Natural passive immunity; antibodies are transferred to the recipient.",
+      "Natural active immunity; the newborn must produce the transferred antibodies.",
+      "Artificial passive immunity; vaccination is involved.",
+      "Artificial active immunity; the newborn develops memory cells immediately."
+    ],
+    a: 0
+  },
+  {
+    t: "A person develops immunity after a clinical infection. Which classification is correct?",
+    o: [
+      "Natural passive",
+      "Artificial passive",
+      "Natural active",
+      "Artificial active"
+    ],
+    a: 2
+  },
+  {
+    t: "Which of the following produces artificial active immunity?",
+    o: [
+      "Maternal antibodies through lactation",
+      "Human immunoglobulin administration",
+      "Antibodies crossing the placenta",
+      "Vaccination"
+    ],
+    a: 3
+  },
+  {
+    t: "Which pair is correctly matched?",
+    o: [
+      "Infection — artificial passive",
+      "Vaccination — artificial active",
+      "Lactation — natural active",
+      "Human immunoglobulin — natural passive"
+    ],
+    a: 1
+  },
+  {
+    t: "A person receives antibodies from another individual and does not need to develop those antibodies personally. Which principle explains this immunity?",
+    o: [
+      "The recipient’s immune system has been actively stimulated by the antigen.",
+      "Protection is obtained without the recipient’s immune system being exposed to the antigen that generated the antibodies.",
+      "The recipient has necessarily developed immunological memory.",
+      "The recipient has developed autoimmunity."
+    ],
+    a: 1
+  },
+  {
+    t: "Which pair represents the two natural forms of acquired immunity listed in the notes?",
+    o: [
+      "Vaccination and clinical infection",
+      "Human immunoglobulin and vaccination",
+      "Placental antibody transfer and maternal antibodies during lactation",
+      "Clinical infection and human immunoglobulin"
+    ],
+    a: 2
+  },
+  {
+    t: "Which statement about passive immunity is INCORRECT?",
+    o: [
+      "It can be acquired naturally.",
+      "It can be acquired artificially.",
+      "It can involve the administration of human immunoglobulin.",
+      "It necessarily requires the recipient to generate the transferred antibodies after antigen exposure."
+    ],
+    a: 3
+  },
+  {
+    t: "A student states that vaccination and receiving human immunoglobulin are both artificial immunity, so they must both be active. What is the error?",
+    o: [
+      "Both are natural rather than artificial.",
+      "Vaccination is artificial active, while human immunoglobulin is artificial passive.",
+      "Vaccination is passive, while immunoglobulin is active.",
+      "Neither is a source of acquired immunity."
+    ],
+    a: 1
+  },
+  {
+    t: "Which scenario most closely matches natural passive immunity?",
+    o: [
+      "An adult develops immunity after a clinical infection.",
+      "A child receives a vaccine.",
+      "An infant receives antibodies in breast milk.",
+      "An adult receives administered human immunoglobulin."
+    ],
+    a: 2
+  },
+  {
+    t: "Which pair differs in the source of protection but belongs to the same broad category of immunity?",
+    o: [
+      "Clinical infection and vaccination — both active",
+      "Vaccination and maternal lactation — both passive",
+      "Placental transfer and clinical infection — both active",
+      "Human immunoglobulin and vaccination — both passive"
+    ],
+    a: 0
+  },
+  {
+    t: "Which statement is the BEST distinction between active and passive acquired immunity?",
+    o: [
+      "Active immunity always occurs naturally, while passive immunity always occurs artificially.",
+      "Active immunity follows antigen exposure that stimulates the recipient’s immune response; passive immunity involves transferred antibodies.",
+      "Active immunity involves B cells, while passive immunity involves only T cells.",
+      "Active immunity occurs only after vaccination, while passive immunity occurs only during pregnancy."
+    ],
+    a: 1
+  },
+  {
+    t: "Which definition best matches an antigen as described in the notes?",
+    o: [
+      "A substance that always suppresses immune responses",
+      "A substance that stimulates an immune response when introduced into the body",
+      "A cell that matures in the thymus",
+      "An antibody transferred from mother to child"
+    ],
+    a: 1
+  },
+  {
+    t: "Which statement best distinguishes an antigen from an antibody?",
+    o: [
+      "An antigen can stimulate a specific immune response; an antibody is an immunoglobulin involved in that response.",
+      "An antigen is always an immunoglobulin, while an antibody is always a microorganism.",
+      "Both terms refer exclusively to T lymphocytes.",
+      "Antibodies are the substances that must enter the body to define every antigen."
+    ],
+    a: 0
+  },
+  {
+    t: "Immunoglobulins are best described as:",
+    o: [
+      "Pure carbohydrates involved exclusively in cell-mediated immunity",
+      "Glycoproteins that mediate humoral or antibody-mediated immunity",
+      "Lipids produced by granulocytes",
+      "Cells that mature in secondary lymphoid organs"
+    ],
+    a: 1
+  },
+  {
+    t: "Which statement about the basic immunoglobulin structure is correct?",
+    o: [
+      "It consists exclusively of heavy chains.",
+      "It consists exclusively of light chains.",
+      "It contains heavy and light polypeptide chains.",
+      "It consists of five different heavy chains in every individual molecule."
+    ],
+    a: 2
+  },
+  {
+    t: "Which immunoglobulin class is determined by a heavy chain containing μ (mu)?",
+    o: ["IgA", "IgM", "IgG", "IgE"],
+    a: 1
+  },
+  {
+    t: "Which heavy-chain/class association is INCORRECT?",
+    o: ["α — IgA", "γ — IgG", "ε — IgE", "δ — IgM"],
+    a: 3
+  },
+  {
+    t: "A laboratory question specifies a heavy chain of type γ. Which class should be selected?",
+    o: ["IgD", "IgE", "IgG", "IgA"],
+    a: 2
+  },
+  {
+    t: "Which immunoglobulin class is associated with the δ (delta) heavy chain?",
+    o: ["IgD", "IgM", "IgA", "IgE"],
+    a: 0
+  },
+  {
+    t: "Which of the following is the correct sequence of heavy-chain symbols for IgM, IgA, IgG, IgE and IgD, respectively?",
+    o: [
+      "μ, α, γ, ε, δ",
+      "α, μ, ε, γ, δ",
+      "μ, γ, α, δ, ε",
+      "δ, α, γ, μ, ε"
+    ],
+    a: 0
+  },
+  {
+    t: "According to the notes, which comparison of chain length is correct?",
+    o: [
+      "Heavy chains are shorter than light chains.",
+      "Light chains contain approximately 400 amino acids, while heavy chains contain approximately 200.",
+      "Heavy chains contain approximately 400 amino acids, while light chains contain approximately 200.",
+      "Both chain types contain approximately 200 amino acids."
+    ],
+    a: 2
+  },
+  {
+    t: "Which feature determines the class of an immunoglobulin molecule?",
+    o: [
+      "The number of antigens present",
+      "The type of heavy chain",
+      "The type of lymphoid organ where it is detected",
+      "The presence of platelets"
+    ],
+    a: 1
+  },
+  {
+    t: "A student correctly identifies an immunoglobulin as a glycoprotein but incorrectly concludes that it belongs to cell-mediated immunity because it is produced by immune cells. Which correction is best?",
+    o: [
+      "Immunoglobulins mediate humoral immunity, even though immune cells produce them.",
+      "Immunoglobulins are innate granulocytes.",
+      "Immunoglobulins are secondary lymphoid organs.",
+      "Immunoglobulins are exclusively responsible for graft rejection through cell-mediated mechanisms."
+    ],
+    a: 0
+  },
+  {
+    t: "Which pairing is CORRECT?",
+    o: [
+      "IgE — ε heavy chain",
+      "IgG — α heavy chain",
+      "IgA — μ heavy chain",
+      "IgD — γ heavy chain"
+    ],
+    a: 0
+  },
+  {
+    t: "A person’s immune system remains unresponsive to a specific antigen following previous exposure to it. What is this phenomenon called?",
+    o: [
+      "Autoimmunity",
+      "Immunological tolerance",
+      "Graft rejection",
+      "Hypersensitivity"
+    ],
+    a: 1
+  },
+  {
+    t: "A disease develops because the immune system attacks self-antigens. Which diagnosis best matches the definition?",
+    o: [
+      "Immunological tolerance",
+      "Natural passive immunity",
+      "Autoimmune disease",
+      "Artificial active immunity"
+    ],
+    a: 2
+  },
+  {
+    t: "Which statement correctly distinguishes tolerance from autoimmunity?",
+    o: [
+      "Tolerance involves unresponsiveness to a specific antigen; autoimmunity involves an immune attack against self-antigens.",
+      "Tolerance is an exaggerated response to an antigen; autoimmunity is complete absence of antibodies.",
+      "Tolerance always causes graft rejection; autoimmunity always causes passive immunity.",
+      "Both terms describe normal antibody transfer from mother to fetus."
+    ],
+    a: 0
+  },
+  {
+    t: "The breakdown of self-tolerance is most directly associated with:",
+    o: [
+      "Autoimmune disease",
+      "Natural passive immunity",
+      "Artificial passive immunity",
+      "Immunological memory alone"
+    ],
+    a: 0
+  },
+  {
+    t: "In transplantation, the donor is:",
+    o: [
+      "The individual receiving the transplanted organ",
+      "The organ being transplanted",
+      "The individual providing the graft",
+      "The immune cell responsible for antibody formation"
+    ],
+    a: 2
+  },
+  {
+    t: "Which pairing is correct?",
+    o: [
+      "Donor — recipient of the graft",
+      "Recipient — provider of the graft",
+      "Graft — organ or tissue transferred from donor to recipient",
+      "Graft — antibody transferred during lactation"
+    ],
+    a: 2
+  },
+  {
+    t: "A kidney is taken from one individual and transferred to another. In this context, the kidney is the:",
+    o: [
+      "Donor",
+      "Recipient",
+      "Graft",
+      "Antigen-antibody complex"
+    ],
+    a: 2
+  },
+  {
+    t: "Which sequence correctly matches the approximate timing of graft rejection described in the notes?",
+    o: [
+      "Hyperacute: months to years; acute: minutes to hours; chronic: days to weeks",
+      "Hyperacute: minutes to hours; acute: days to weeks; chronic: months to years",
+      "Hyperacute: days to weeks; acute: months to years; chronic: minutes to hours",
+      "Hyperacute: hours to days; acute: years; chronic: minutes"
+    ],
+    a: 1
+  },
+  {
+    t: "A graft rejection process occurs several months after transplantation. Which category best matches the timeline in the notes?",
+    o: ["Hyperacute", "Acute", "Chronic", "Natural passive"],
+    a: 2
+  },
+  {
+    t: "A patient develops graft rejection within hours of transplantation. Which classification is most consistent with the supplied timing?",
+    o: [
+      "Hyperacute rejection",
+      "Acute rejection",
+      "Chronic rejection",
+      "Type I hypersensitivity by definition"
+    ],
+    a: 0
+  },
+  {
+    t: "Which statement is INCORRECT?",
+    o: [
+      "The donor gives the graft.",
+      "The recipient receives the graft.",
+      "The graft may be a kidney.",
+      "The recipient is the person who provides the transplanted organ."
+    ],
+    a: 3
+  },
+  {
+    t: "Which combination is correctly matched?",
+    o: [
+      "Self-antigen attack — tolerance",
+      "Unresponsiveness to a specific antigen — autoimmunity",
+      "Breakdown of self-tolerance — autoimmune disease",
+      "Graft transfer — artificial active immunity"
+    ],
+    a: 2
+  },
+  {
+    t: "Hypersensitivity is best described as:",
+    o: [
+      "A normal, protective response that is always harmless",
+      "An exaggerated, abnormal and harmful immune response",
+      "A complete inability to recognize antigens",
+      "The transfer of antibodies from mother to fetus"
+    ],
+    a: 1
+  },
+  {
+    t: "A patient develops an allergic response associated with IgE. Which hypersensitivity type is indicated?",
+    o: ["Type I", "Type II", "Type III", "Type IV"],
+    a: 0
+  },
+  {
+    t: "Which immunoglobulin is most directly associated with Type I hypersensitivity in the notes?",
+    o: ["IgA", "IgM", "IgD", "IgE"],
+    a: 3
+  },
+  {
+    t: "A reaction involves antibodies directed against antigens on the surface of red blood cells. Which type of hypersensitivity is most consistent with the supplied classification?",
+    o: ["Type I", "Type II", "Type III", "Type IV"],
+    a: 1
+  },
+  {
+    t: "Which immunoglobulin combination is associated with Type II hypersensitivity in the notes?",
+    o: ["IgE only", "IgA and IgD", "IgM and IgG", "IgD and IgE"],
+    a: 2
+  },
+  {
+    t: "Which mechanism most clearly identifies Type III hypersensitivity?",
+    o: [
+      "IgE-associated allergy",
+      "Antigen-antibody immune-complex formation",
+      "Exclusively delayed cell-mediated damage",
+      "Transfer of maternal antibodies"
+    ],
+    a: 1
+  },
+  {
+    t: "Post-streptococcal glomerulonephritis is presented in the notes as an example of:",
+    o: ["Type I hypersensitivity", "Type II hypersensitivity", "Type III hypersensitivity", "Type IV hypersensitivity"],
+    a: 2
+  },
+  {
+    t: "Which of the following is the best match for Type IV hypersensitivity?",
+    o: [
+      "IgE-mediated immediate allergy",
+      "IgM/IgG-associated reaction against red-cell antigens",
+      "Antigen-antibody immune-complex formation",
+      "Delayed cell-mediated immune response involving macrophages and T cells"
+    ],
+    a: 3
+  },
+  {
+    t: "A reaction begins approximately 18–24 hours after antigen contact and may persist for days. Which type best fits the notes?",
+    o: ["Type I", "Type II", "Type III", "Type IV"],
+    a: 3
+  },
+  {
+    t: "Which group contains the effector cells listed for Type IV hypersensitivity?",
+    o: [
+      "Macrophages, TH cells and TC cells",
+      "RBCs, platelets and B cells",
+      "Basophils, platelets and antibodies only",
+      "NK cells, RBCs and eosinophils only"
+    ],
+    a: 0
+  },
+  {
+    t: "Which example is matched correctly with its hypersensitivity type according to the supplied notes?",
+    o: [
+      "Allergy — Type IV",
+      "Erythroblastosis fetalis — Type II",
+      "Post-streptococcal glomerulonephritis — Type I",
+      "Graft rejection — Type III exclusively"
+    ],
+    a: 1
+  },
+  {
+    t: "Which pair is INCORRECTLY matched?",
+    o: [
+      "Type I — IgE",
+      "Type II — IgM and IgG",
+      "Type III — immune complexes",
+      "Type IV — IgE-mediated allergy"
+    ],
+    a: 3
+  },
+  {
+    t: "Which pair of hypersensitivity types is associated with IgM and IgG in the notes?",
+    o: ["Types I and IV", "Types II and III", "Types I and II", "Types III and IV"],
+    a: 1
+  },
+  {
+    t: "An antigen-antibody complex forms and is implicated in tissue damage. Which is the most appropriate classification?",
+    o: ["Type I", "Type II", "Type III", "Type IV"],
+    a: 2
+  },
+  {
+    t: "Which feature distinguishes Type IV from the other three types in the supplied classification?",
+    o: [
+      "It is associated with IgE.",
+      "It is defined by antigen-antibody immune complexes.",
+      "It is delayed and cell-mediated.",
+      "It is exclusively defined by IgM and IgG."
+    ],
+    a: 2
+  },
+  {
+    t: "A student associates every hypersensitivity reaction with antibodies and ignores cellular mechanisms. Which type most clearly exposes this mistake?",
+    o: ["Type I", "Type II", "Type III", "Type IV"],
+    a: 3
+  },
+  {
+    t: "Which combination is entirely consistent with Type I hypersensitivity?",
+    o: [
+      "IgE, allergy, histamine release",
+      "IgM/IgG, immune complexes, delayed response",
+      "T cells, macrophages, delayed response only",
+      "IgM/IgG, red-cell antigens, Type II reaction"
+    ],
+    a: 0
+  },
+  {
+    t: "Which set contains only examples of allergens listed in the notes?",
+    o: [
+      "Pollen, dust, animal hair",
+      "Platelets, RBCs, neutrophils",
+      "Bone marrow, thymus, spleen",
+      "Complement, lysozymes, cytokines"
+    ],
+    a: 0
+  },
+  {
+    t: "A newborn’s condition is associated in the notes with an immune reaction involving antigens on red blood cells. Which combination best matches the intended exam answer?",
+    o: [
+      "Type I — IgE",
+      "Type II — IgM/IgG",
+      "Type III — immune complexes",
+      "Type IV — delayed cell-mediated response"
+    ],
+    a: 1
+  },
+  {
+    t: "Consider the following statements: 1. T cells originate in the bone marrow and mature in the thymus. 2. B cells are associated with antibody formation. 3. The spleen is a primary lymphoid organ. 4. NK cells are included under innate immunity in the notes. Which combination is correct?",
+    o: [
+      "1 and 2 only",
+      "1, 2 and 3 only",
+      "1, 2 and 4 only",
+      "2, 3 and 4 only"
+    ],
+    a: 2
+  },
+  {
+    t: "Consider the following scenarios: 1. Antibodies pass from mother to fetus through the placenta. 2. A person receives a vaccine. 3. A patient receives human immunoglobulin. 4. A person develops immunity following clinical infection. Which option correctly classifies scenarios 1–4, respectively?",
+    o: [
+      "Natural active, artificial passive, natural passive, artificial active",
+      "Natural passive, artificial active, artificial passive, natural active",
+      "Artificial passive, natural active, artificial active, natural passive",
+      "Natural passive, natural active, natural passive, artificial active"
+    ],
+    a: 1
+  },
+  {
+    t: "A student is given four findings: an IgE-associated allergic reaction; an immune-complex-mediated reaction; a delayed cell-mediated reaction; and an antibody-associated reaction involving red-cell antigens. Which sequence correctly identifies their hypersensitivity types?",
+    o: [
+      "I → III → IV → II",
+      "II → I → III → IV",
+      "I → II → III → IV",
+      "IV → III → II → I"
+    ],
+    a: 0
+  },
+  {
+    t: "A researcher observes an antigen-specific immune response, followed by the formation of memory cells. Separately, another individual receives ready-made immunoglobulin. Which statement best distinguishes the two situations?",
+    o: [
+      "Both situations necessarily represent passive immunity.",
+      "The first is consistent with an active immune response, whereas the second represents passive immunity.",
+      "The first is natural passive immunity, whereas the second is artificial active immunity.",
+      "Both situations represent Type IV hypersensitivity."
+    ],
+    a: 1
+  }
+];
+
+/* =====================================================
+   ENGINE
+===================================================== */
+
+let questions=[];
+let current=0;
+let correct=0;
+let wrong=0;
+let answered=0;
+
+let answers=[];
+let wrongSet=[];
+
+let totalTime=60*60;
+let timeLeft=totalTime;
+let timerInterval=null;
+
+let studentName="";
+let studentCode="";
+
+// تثبيت نتيجة الامتحان الأصلي وفصل مراجعة الأخطاء
+let reviewMode = false;
+let originalResult = null;
+
+const LETTERS=["A","B","C","D","E","F"];
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  const arr=[...array];
+
+  for(let x=arr.length-1;x>0;x--){
+
+    const y=Math.floor(Math.random()*(x+1));
+
+    [arr[x],arr[y]]=[arr[y],arr[x]];
+
+  }
+
+  return arr;
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* INIT */
+
+function init(pool, isReview = false){
+
+  clearInterval(timerInterval);
+
+  // المراجعة منفصلة عن الامتحان الأصلي
+  if(!isReview){
+    reviewMode = false;
+    originalResult = null;
+  }else{
+    reviewMode = true;
+  }
+
+  questions=shuffle(pool);
+
+  current=0;
+  correct=0;
+  wrong=0;
+  answered=0;
+
+  answers=new Array(questions.length).fill(null);
+  wrongSet=[];
+
+  timeLeft=totalTime;
+
+  document.getElementById("totalBadge").textContent=
+    questions.length+" سؤال";
+
+  startTimer();
+
+  render();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+
+      finish();
+
+    }
+
+  },1000);
+
+}
+
+
+function updateTimer(){
+
+  const min=Math.floor(timeLeft/60);
+
+  const sec=timeLeft%60;
+
+  const timer=document.getElementById("timerTxt");
+
+  const badge=document.getElementById("timerBadge");
+
+  timer.textContent=
+    `${min}:${sec<10?"0":""}${sec}`;
+
+  badge.className="timer-badge";
+
+  if(timeLeft<=120){
+
+    badge.classList.add("danger");
+
+  }else if(timeLeft<=300){
+
+    badge.classList.add("warn");
+
+  }
+
+}
+
+
+/* TOP */
+
+function updateTop(){
+
+  const total=questions.length;
+
+  document.getElementById("sCorrect").textContent=correct;
+
+  document.getElementById("sWrong").textContent=wrong;
+
+  const remaining=total-answered;
+
+  document.getElementById("sRemain").textContent=
+    Math.round((remaining/total)*100)+"%";
+
+  document.getElementById("progLabel").textContent=
+    "سؤال "+(current+1)+" / "+total;
+
+  const percent=((current+1)/total)*100;
+
+  document.getElementById("progFill").style.width=
+    percent+"%";
+
+  document.getElementById("prog-bar").style.width=
+    percent+"%";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+  updateTop();
+
+  const q=questions[current];
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="q-card">
+
+      <div class="q-header">
+
+        <div class="q-num">
+          سؤال ${current+1} / ${questions.length}
+        </div>
+
+      </div>
+
+
+      <div class="q-text">
+        ${escapeHTML(q.t)}
+      </div>
+
+
+      <div class="options">
+
+        ${q.o.map((option,index)=>`
+
+          <div
+            class="opt"
+            id="opt${index}"
+            onclick="choose(${index})"
+          >
+
+            <div class="opt-letter">
+              ${LETTERS[index] || index+1}
+            </div>
+
+            <div>
+              ${escapeHTML(option)}
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="nav-btns">
+
+        <button
+          class="btn btn-skip"
+          type="button"
+          onclick="skip()"
+        >
+
+          <i class="fa-solid fa-forward"></i>
+
+          تخطي
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* CHOOSE */
+
+function choose(answer){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  const q=questions[current];
+
+  answers[current]=answer;
+
+  answered++;
+
+  const isCorrect=
+    answer===q.a;
+
+  if(isCorrect){
+
+    correct++;
+
+  }else{
+
+    wrong++;
+
+  }
+
+  updateTop();
+
+
+  q.o.forEach((_,index)=>{
+
+    const option=
+      document.getElementById("opt"+index);
+
+    option.classList.add("disabled");
+
+    if(index===q.a){
+
+      option.classList.add("correct");
+
+    }
+
+    if(index===answer && answer!==q.a){
+
+      option.classList.add("wrong");
+
+    }
+
+  });
+
+
+  const card=
+    document.querySelector(".q-card");
+
+  const feedback=
+    document.createElement("div");
+
+  feedback.className=
+    "feedback-bar "+(isCorrect?"ok":"no");
+
+  feedback.innerHTML=isCorrect
+    ? `<span class="feedback-icon">🎉</span>
+       <span>إجابة صحيحة ✔</span>`
+    : `<span class="feedback-icon">😔</span>
+       <span>إجابة خاطئة ✖</span>`;
+
+  card
+    .querySelector(".options")
+    .after(feedback);
+
+
+  const nav=
+    card.querySelector(".nav-btns");
+
+  nav.innerHTML=`
+
+    <button
+      class="btn btn-next"
+      type="button"
+      onclick="next()"
+    >
+
+      ${
+        current<questions.length-1
+        ? '<i class="fa-solid fa-arrow-left"></i> السؤال التالي'
+        : '<i class="fa-solid fa-flag-checkered"></i> إنهاء الامتحان'
+      }
+
+    </button>
+
+  `;
+
+}
+
+
+/* SKIP */
+
+function skip(){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  answers[current]=-1;
+
+  answered++;
+
+  next();
+
+}
+
+
+/* NEXT */
+
+function next(){
+
+  if(current<questions.length-1){
+
+    current++;
+
+    render();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+/* STUDENT FORM */
+
+function showStudentForm(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="
+        font-size:45px;
+        margin-bottom:12px;
+      ">
+        📝
+      </div>
+
+
+      <div class="result-grade">
+        بيانات الطالب
+      </div>
+
+
+      <div class="result-sub"
+        style="margin-bottom:22px;"
+      >
+        من فضلك اكتب اسمك وكود الكشف قبل عرض النتيجة
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          الاسم
+        </label>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب اسمك بالكامل"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          كود الكشف
+        </label>
+
+        <input
+          id="studentCodeInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب كود الكشف"
+        >
+
+      </div>
+
+
+      <div
+        id="studentError"
+        class="student-error"
+      >
+        من فضلك اكتب الاسم وكود الكشف
+      </div>
+
+
+      <button
+        class="btn btn-next"
+        type="button"
+        onclick="saveStudentInfo()"
+      >
+
+        ✅ تأكيد وعرض النتيجة
+
+      </button>
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE STUDENT */
+
+function saveStudentInfo(){
+
+  const name=
+    document
+      .getElementById("studentNameInput")
+      .value
+      .trim();
+
+  const code=
+    document
+      .getElementById("studentCodeInput")
+      .value
+      .trim();
+
+  const error=
+    document.getElementById("studentError");
+
+  if(!name || !code){
+
+    error.style.display="block";
+
+    return;
+
+  }
+
+  studentName=name;
+  studentCode=code;
+
+  finish(true);
+
+}
+
+
+/* FINISH */
+
+function finish(showResult=false){
+
+  // عند انتهاء مراجعة الأخطاء، اعرض نتيجة التدريب فقط
+  if(reviewMode && !showResult){
+    clearInterval(timerInterval);
+    showReviewResult();
+    return;
+  }
+
+  if(!showResult){
+    showStudentForm();
+    return;
+  }
+
+  // لا تسمح للمراجعة بتغيير الدرجة الأصلية
+  if(reviewMode){
+    showReviewResult();
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+
+  const score=
+    Math.round((correct/total)*100);
+
+
+  wrongSet=questions
+    .map((q,index)=>{
+
+      if(answers[index]!==q.a){
+
+        return {
+          ...q,
+          myAns:answers[index]
+        };
+
+      }
+
+      return null;
+
+    })
+    .filter(Boolean);
+
+
+  let grade;
+  let gradeColor;
+
+
+  if(score>=90){
+
+    grade="🥇 ممتاز";
+    gradeColor="var(--success)";
+
+  }else if(score>=75){
+
+    grade="🥈 جيد جداً";
+    gradeColor="var(--gold-light)";
+
+  }else if(score>=60){
+
+    grade="🥉 جيد";
+    gradeColor="var(--gold)";
+
+  }else{
+
+    grade="📚 راجع تاني";
+    gradeColor="var(--danger)";
+
+  }
+
+
+  const circumference=
+    2*Math.PI*45;
+
+  const offset=
+    circumference-(score/100)*circumference;
+
+
+  const reportHTML=
+    questions.map((q,index)=>{
+
+      const isCorrect=
+        answers[index]===q.a;
+
+      const yourAnswer=
+        answers[index]>=0
+        ? escapeHTML(q.o[answers[index]])
+        : "تم التخطي";
+
+
+      return `
+
+        <div class="report-item ${isCorrect?"ok":"no"}">
+
+          <div class="ri-q">
+
+            ${isCorrect?"✅":"❌"}
+
+            ${escapeHTML(q.t)}
+
+          </div>
+
+
+          ${
+            !isCorrect
+            ? `
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-yours">
+                  إجابتك
+                </span>
+
+                <span>
+                  ${yourAnswer}
+                </span>
+
+              </div>
+
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-right">
+                  الصحيح
+                </span>
+
+                <span>
+                  ${escapeHTML(q.o[q.a])}
+                </span>
+
+              </div>
+
+            `
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("prog-bar").style.width="100%";
+
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+
+      <div style="
+        background:var(--bg2);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:20px;
+        text-align:right;
+      ">
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          اسم الطالب
+        </div>
+
+        <div style="
+          font-size:17px;
+          font-weight:900;
+          color:var(--text);
+          margin-bottom:12px;
+        ">
+          ${escapeHTML(studentName)}
+        </div>
+
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          كود الكشف
+        </div>
+
+        <div style="
+          font-size:16px;
+          font-weight:900;
+          color:var(--gold);
+        ">
+          ${escapeHTML(studentCode)}
+        </div>
+
+      </div>
+
+
+      <div class="score-ring">
+
+        <svg viewBox="0 0 110 110">
+
+          <circle
+            class="ring-bg"
+            cx="55"
+            cy="55"
+            r="45"
+          />
+
+          <circle
+            class="ring-fill"
+            cx="55"
+            cy="55"
+            r="45"
+            stroke="${gradeColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="ringFill"
+          />
+
+        </svg>
+
+
+        <div class="score-num">
+          ${score}
+        </div>
+
+        <div class="score-pct">
+          %
+        </div>
+
+      </div>
+
+
+      <div
+        class="result-grade"
+        style="color:${gradeColor}"
+      >
+        ${grade}
+      </div>
+
+
+      <div class="result-sub">
+
+        أجبت على ${answered} من ${total} سؤال
+
+      </div>
+
+
+      <div class="result-stats">
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--success)"
+          >
+            ${correct}
+          </div>
+
+          <div class="l">
+            صحيح
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--danger)"
+          >
+            ${wrong}
+          </div>
+
+          <div class="l">
+            خطأ
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--gold)"
+          >
+            ${total-answered}
+          </div>
+
+          <div class="l">
+            تخطي
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="result-actions">
+
+
+      ${
+        wrongSet.length
+        ? `
+
+          <button
+            class="btn btn-retry"
+            type="button"
+            onclick="retryWrong()"
+          >
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            إعادة الخطأ (${wrongSet.length})
+
+          </button>
+
+        `
+        :""
+      }
+
+
+      <button
+        class="btn btn-home"
+        type="button"
+        onclick="init(QUESTIONS)"
+      >
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        امتحان جديد عشوائي
+
+      </button>
+
+
+      <a
+        href="../index.html"
+        class="btn btn-home"
+        style="text-decoration:none;"
+      >
+
+        <i class="fa-solid fa-house"></i>
+
+        رجوع للمادة
+
+      </a>
+
+
+    </div>
+
+
+    <div>
+
+      <div class="report-title">
+        📋 تقرير مفصّل
+      </div>
+
+      ${reportHTML}
+
+    </div>
+
+  `;
+
+  // حفظ نسخة ثابتة من النتيجة الرسمية قبل بدء أي مراجعة
+  originalResult = {
+    questions: questions.slice(),
+    answers: answers.slice(),
+    wrongSet: wrongSet.map(q=>({...q})),
+    correct: correct,
+    wrong: wrong,
+    answered: answered,
+    score: score,
+    resultHTML: document.getElementById("app").innerHTML,
+    studentName: studentName,
+    studentCode: studentCode
+  };
+
+  setTimeout(()=>{
+
+    const ring=
+      document.getElementById("ringFill");
+
+    if(ring){
+
+      ring.style.strokeDashoffset=
+        offset;
+
+    }
+
+  },100);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* RETRY WRONG - مراجعة منفصلة */
+
+function retryWrong(){
+
+  if(!originalResult || !originalResult.wrongSet.length){
+    return;
+  }
+
+  const pool=originalResult.wrongSet.map(q=>({
+    t:q.t,
+    o:q.o,
+    a:q.a
+  }));
+
+  // بدء المراجعة دون تغيير الدرجة الأصلية
+  init(pool, true);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* REVIEW RESULT - نتيجة التدريب فقط */
+
+function showReviewResult(){
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+  const reviewCorrect=correct;
+  const reviewWrong=wrong;
+  const reviewSkipped=total-answered;
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="font-size:45px;margin-bottom:12px;">📚</div>
+
+      <div class="result-grade">انتهت مراجعة الأخطاء</div>
+
+      <div class="result-sub" style="margin-bottom:20px;">
+        دي نتيجة التدريب فقط، ودرجتك الأصلية لم تتغير.
+      </div>
+
+      <div class="result-stats">
+
+        <div class="rs">
+          <div class="n" style="color:var(--success)">${reviewCorrect}</div>
+          <div class="l">إجابة صحيحة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--danger)">${reviewWrong}</div>
+          <div class="l">إجابة خاطئة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--gold)">${reviewSkipped}</div>
+          <div class="l">لم تتم الإجابة</div>
+        </div>
+
+      </div>
+
+      <div style="
+        margin-top:22px;
+        padding:15px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:var(--bg2);
+      ">
+        <div style="color:var(--text2);font-size:13px;margin-bottom:6px;">
+          درجتك الرسمية في الامتحان الأصلي
+        </div>
+        <div style="font-size:32px;font-weight:900;color:var(--gold);">
+          ${originalResult ? originalResult.score : 0}%
+        </div>
+        <div style="color:var(--success);font-size:12px;margin-top:5px;">
+          🔒 الدرجة الأصلية ثابتة
+        </div>
+      </div>
+
+      <div class="result-actions">
+
+        <button class="btn btn-retry" type="button" onclick="showOriginalResult()">
+          <i class="fa-solid fa-arrow-right"></i>
+          العودة إلى النتيجة الأصلية
+        </button>
+
+        <button class="btn btn-home" type="button" onclick="init(QUESTIONS)">
+          <i class="fa-solid fa-shuffle"></i>
+          امتحان جديد
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("prog-bar").style.width="100%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* RESTORE ORIGINAL RESULT */
+
+function showOriginalResult(){
+
+  if(!originalResult){
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  questions=originalResult.questions.slice();
+  answers=originalResult.answers.slice();
+  wrongSet=originalResult.wrongSet.map(q=>({...q}));
+
+  correct=originalResult.correct;
+  wrong=originalResult.wrong;
+  answered=originalResult.answered;
+
+  studentName=originalResult.studentName;
+  studentCode=originalResult.studentCode;
+
+  current=Math.max(0, questions.length-1);
+  reviewMode=false;
+
+  document.getElementById("app").innerHTML=originalResult.resultHTML;
+
+  updateTop();
+  document.getElementById("prog-bar").style.width="100%";
+
+  const ring=document.getElementById("ringFill");
+
+  if(ring){
+    const circumference=2*Math.PI*45;
+    const offset=circumference-(originalResult.score/100)*circumference;
+
+    ring.style.strokeDashoffset=circumference;
+
+    setTimeout(()=>{
+      const currentRing=document.getElementById("ringFill");
+      if(currentRing){
+        currentRing.style.strokeDashoffset=offset;
+      }
+    },100);
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* THEME */
+
+const themeBtn=
+  document.getElementById("themeBtn");
+
+let theme=
+  localStorage.getItem("theme") || "dark";
+
+
+function applyTheme(value){
+
+  theme=value;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    value==="dark" ? "dark" : ""
+  );
+
+  if(themeBtn){
+
+    themeBtn.textContent=
+      value==="dark" ? "☀️" : "🌙";
+
+  }
+
+  localStorage.setItem(
+    "theme",
+    value
+  );
+
+}
+
+
+applyTheme(theme);
+
+
+if(themeBtn){
+
+  themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+      applyTheme(
+        theme==="dark"
+        ? "light"
+        : "dark"
+      );
+
+    }
+  );
+
+}
+
+
+/* START */
+
+init(QUESTIONS);
+
+</script>
+<div style="
+  max-width:650px;
+  margin:35px auto;
+  padding:0 20px;
+  text-align:center;
+  direction:rtl;
+">
+
+  <div style="
+    color:#d4af37;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+  ">
+    ✦ تواصل معنا ✦
+  </div>
+
+  <div style="
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
+
+    <a href="https://wa.me/201010306545"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 تواصل معنا على واتساب
+    </a>
+
+    <a href="https://chat.whatsapp.com/JR7eCQQn9HLGoCYUfA1NNF?mode=gi_t"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 انضم إلى جروب الواتساب
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
